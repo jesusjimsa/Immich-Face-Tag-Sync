@@ -16,6 +16,8 @@ Usage:
 """
 
 import argparse
+import getpass
+import os
 import sys
 import requests
 
@@ -23,6 +25,7 @@ import requests
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def build_headers(api_key: str) -> dict:
+    """Build HTTP headers for Immich API requests."""
     return {"x-api-key": api_key, "Accept": "application/json"}
 
 
@@ -106,6 +109,7 @@ def asset_url(base_url: str, asset_id: str) -> str:
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
         description="Find photos tagged with a person that are missing from Immich face recognition."
     )
@@ -117,7 +121,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def prompt_if_missing(args: argparse.Namespace) -> argparse.Namespace:
-    import os
+    """Prompt the user for any arguments not supplied on the command line."""
     if not args.tag:
         args.tag = input("Person tag (e.g. People/Paul-McCartney): ").strip()
     if not args.person:
@@ -133,7 +137,6 @@ def prompt_if_missing(args: argparse.Namespace) -> argparse.Namespace:
             with open("api.txt") as f:
                 args.key = f.read().strip()
         else:
-            import getpass
             args.key = getpass.getpass("Immich API key: ").strip()
     return args
 
@@ -141,6 +144,7 @@ def prompt_if_missing(args: argparse.Namespace) -> argparse.Namespace:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
+    """Entry point: find photos tagged with a person but missing from Immich face recognition."""
     args = prompt_if_missing(parse_args())
 
     session = requests.Session()
