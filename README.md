@@ -14,6 +14,14 @@ Install dependencies with:
 pip install -r requirements.txt
 ```
 
+### API permissions
+
+- asset.read
+- face.read
+- library.read
+- person.read
+- tag.read
+
 ## Usage
 
 ### Command-line arguments
