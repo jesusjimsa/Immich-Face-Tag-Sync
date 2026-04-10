@@ -228,3 +228,6 @@ pyrightconfig.json
 api.txt
 url.txt
 
+# Output files
+unmatched*.txt
+
