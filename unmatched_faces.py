@@ -7,7 +7,7 @@ but are NOT assigned to the matching person in Immich's face recognition.
 
 Usage:
   python find_unmatched_faces.py \
-      --tag "People/Paul-McCartney" \
+      --tag "People/Paul McCartney" \
       --person "Paul McCartney" \
       --url "http://your-immich-instance:2283" \
       --key "your_api_key"
